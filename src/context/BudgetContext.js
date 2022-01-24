@@ -14,20 +14,28 @@ export const BudgetsProvider = ({ children }) => {
     function getBudgetExpenses(budgetId) {
         return expenses.filter(expense => expense.budgetId === budgetId)
     }
-    function addExpense() {
-
+    function addExpense({description, amount, budgetId}) {
+        setExpenses(prevExpenses => {
+            return [...prevExpenses, { id: uuidV4(), description, amount, budgetId }]
+        })
     }
     function addBudget() {
         setBudgets(prevBudgets => {
-            if(prevBudgets)
+            if(prevBudgets.find(budget => budget.name === name)) {
+                return prevBudgets
+            }
             return [...prevBudgets, { id: uuidV4(), name, max}]
         })
     }
-    function deleteBudget() {
-
+    function deleteBudget({id}) {
+setBudgets(prevBudgets => {
+    return prevBudgets.filter(budget => budget.id !== id)
+})
     }
-    function deleteExpense() {
-
+    function deleteExpense({id}) {
+        setExpenses(prevExpenses => {
+            return prevExpenses.filter(expense => expense.id !== id)
+        })
     }
 
 
