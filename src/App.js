@@ -3,8 +3,10 @@ import './App.css';
 import BudgetCards from '../src/components/BudgetCards.js'
 import AddBudgetModal from "../src/components/addBudgetModal.js"
 import { useState } from 'react';
-import { BudgetsProvider, useBudgets } from './context/BudgetContext';
+import { useBudgets } from './context/BudgetContext';
 import AddExpenseModal from './components/AddExpenseModal';
+import UncategorizedBudgetCards from "./components/UncategorizedBudgetCards";
+import TotalBudgetCards from './components/TotalBudgetCard';
 
 function App() {
   const [showAddBudgetModal, setShowAddBudgetModal] = useState(false)
@@ -48,6 +50,8 @@ function App() {
               />
             )
           })}
+          <UncategorizedBudgetCards/>
+          <TotalBudgetCards/>
         </div>
       </Container>
       <AddBudgetModal show={showAddBudgetModal} handleClose={() => setShowAddBudgetModal(false)} />
